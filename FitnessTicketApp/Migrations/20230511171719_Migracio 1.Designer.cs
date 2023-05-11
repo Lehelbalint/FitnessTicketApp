@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessTicketApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    [Migration("20230511101624_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20230511171719_Migracio 1")]
+    partial class Migracio1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,45 @@ namespace FitnessTicketApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("FitnessTicketApp.Models.Domain.BerletTipus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Ar")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HanyBelepesreErvenyes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HanyNapigErvenyes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hanyoraig")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hanyoratol")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Megnevezes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NapontaHanyszorHasznalhato")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Terem_Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Torolve")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BerletTipusok");
+                });
 
             modelBuilder.Entity("FitnessTicketApp.Models.Domain.Client", b =>
                 {
