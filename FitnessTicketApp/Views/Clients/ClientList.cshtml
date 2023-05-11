@@ -1,0 +1,89 @@
+﻿@model List<FitnessTicketApp.Models.Domain.Client>
+@{
+}
+
+<h1>Clients</h1>
+
+
+<form action="ClientList">
+    <div class="input-group md-form form-control-sm form-2 pl-0">
+        <input name="clientName" class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" />
+        <div class="input-group-append">
+            <span class="input-group-text red lighten-3" id="basic-text1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </span>
+        </div>
+
+    </div>
+</form>
+
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Is_Deleted</th>
+            <th>Inserted_Date</th>
+            <th>CNP</th>
+            <th>Adress</th>
+            <th>Code</th>
+            <th>Comment</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Id</td>
+                <td>@client.Name</td>
+                <td>@client.Phone</td>
+                <td>@client.Email</td>
+                <td>@client.Is_deleted</td>
+                <td>@client.inserted_date.ToString("dd-MM-yyy")</td>
+                <td>@client.CNP</td>
+                <td>@client.Adress</td>
+                <td>@client.Code</td>
+                <td>@client.Comment</td>
+                <td><a href="View/@client.Id">Edit</a>
+                    <a href="Delete/@client.Id">Delete</a>
+                    </td>
+            </tr>
+        }
+        
+    </tbody>
+
+</table>
+
+
+<button type="button" class="btn btn-primary" onclick="exportTableToExcel()">Export to Excel</button>
+
+
+<script>
+    function exportTableToExcel() {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var table = document.getElementById('table');
+        var tableHTML = table.outerHTML.replace(/ /g, '%20');
+        // Specify file name
+        var filename = 'exported_table.xls';
+        // Create download link element
+        downloadLink = document.createElement("a");
+        document.body.appendChild(downloadLink);
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob([tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            // Setting the file name
+            downloadLink.download = filename;
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+</script>

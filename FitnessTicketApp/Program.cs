@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+
 using FitnessTicketApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MVCDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("MvcDbConnectionString")));
+
+builder.Services.AddDbContext<FitnessAppDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("MvcDbConnectionString")));
 
 var app = builder.Build();
 
