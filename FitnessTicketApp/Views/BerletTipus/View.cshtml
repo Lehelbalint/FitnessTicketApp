@@ -1,0 +1,50 @@
+﻿@model FitnessTicketApp.Models.UpdateBerletTipusViewModel
+@{
+}
+
+
+<h1>Update Berlet Tipus</h1>
+<form method="post" action="View">
+    <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="Id" readonly>
+    </div>
+    <div>
+        <label for="" class="form-label">Megnevezes</label>
+        <input type="text" class="form-control" asp-for="Megnevezes">
+    </div>
+    <div>
+        <label for="" class="form-label">Ar</label>
+        <input type="number" class="form-control" asp-for="Ar">
+    </div>
+    <div>
+        <label for="" class="form-label">Hany napig ervenyes</label>
+        <input type="number" class="form-control" asp-for="HanyNapigErvenyes">
+    </div>
+    <div>
+        <label for="" class="form-label">Hany belepesre ervenyes</label>
+        <input type="number" class="form-control" asp-for="HanyBelepesreErvenyes">
+    </div>
+    <div>
+        <label for="" class="form-label">Torolve</label>
+        <input type="checkbox" class="form-control" asp-for="Torolve">
+    </div>
+    <div>
+        <label for="" class="form-label">Terem Id</label>
+        <input type="text" class="form-control" asp-for="Terem_Id">
+    </div>
+    <div>
+        <label for="" class="form-label">Hanyoratol</label>
+        <input type="number" class="form-control" asp-for="Hanyoratol">
+    </div>
+    <div>
+        <label for="" class="form-label">Hanyoraig</label>
+        <input type="number" class="form-control" asp-for="Hanyoraig">
+    </div>
+    <div>
+        <label for="" class="form-label">Naponta hanyszor hasznalhato</label>
+        <input type="number" class="form-control" asp-for="NapontaHanyszorHasznalhato">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
