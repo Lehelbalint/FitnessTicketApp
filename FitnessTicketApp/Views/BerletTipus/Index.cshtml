@@ -1,0 +1,41 @@
+﻿@model List<FitnessTicketApp.Models.Domain.BerletTipus>
+@{
+}
+
+
+<h1>Berlet Tipusok</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Megnevezes</th>
+			<th>Ar</th>
+			<th>Hany napig ervenyes</th>
+			<th>Hany belepesre ervenyes</th>
+			<th>Torolve</th>
+			<th>Terem id</th>
+			<th>Hanyoratol</th>
+			<th>Hanyoraig</th>
+			<th>Naponta hanyszor hasznalhato</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var berlet in Model)
+		{
+			<tr>
+				<td>@berlet.Id</td>
+				<td>@berlet.Megnevezes</td>
+				<td>@berlet.Ar</td>
+				<td>@berlet.HanyNapigErvenyes</td>
+				<td>@berlet.HanyBelepesreErvenyes</td>
+				<td>@berlet.Torolve</td>
+				<td>@berlet.Terem_Id</td>
+				<td>@berlet.Hanyoratol</td>
+				<td>@berlet.Hanyoraig</td>
+				<td>@berlet.NapontaHanyszorHasznalhato</td>
+				<td><a href="BerletTipus/View/@berlet.Id">View</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
