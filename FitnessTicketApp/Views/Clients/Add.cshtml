@@ -1,0 +1,39 @@
+﻿@model FitnessTicketApp.Models.AddClientViewModel
+@{
+}
+<h1>Add Client</h1>
+<form method="post" enctype="multipart/form-data" action="Add" class="mt-5">
+    <div class="mb-3">
+    <label for="name" class="form-label">Név:</label>
+    <input type="text" id="name" name="Name" required asp-for="Name" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Telefonszám:</label>
+        <input type="tel" id="phone" name="Phone" pattern="[0-9]{10}" required asp-for="Phone" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail cím:</label>
+        <input type="email" id="email" name="Email" required asp-for="Email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="photo" class="form-label">Fénykép:</label>
+        <input type="file" id="photo" name="Photo" asp-for="Photo" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="cnp" class="form-label">CNP:</label>
+        <input type="text" id="cnp" name="CNP" pattern="[0-9]{13}" required asp-for="CNP" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="adress" class="form-label">Lakcím:</label>
+        <input type="text" id="adress" name="Adress" required asp-for="Adress" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="code" class="form-label">Irányítószám:</label>
+        <input type="text" id="code" name="Code" pattern="[0-9]{4}" required asp-for="Code" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="comment" class="form-label">Megjegyzés:</label>
+        <textarea id="comment" name="Comment" asp-for="Comment" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
