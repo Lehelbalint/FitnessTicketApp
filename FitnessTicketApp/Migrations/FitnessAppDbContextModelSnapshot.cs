@@ -22,6 +22,45 @@ namespace FitnessTicketApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FitnessTicketApp.Models.Domain.BerletTipus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Ar")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HanyBelepesreErvenyes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HanyNapigErvenyes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hanyoraig")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hanyoratol")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Megnevezes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NapontaHanyszorHasznalhato")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Terem_Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Torolve")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BerletTipusok");
+                });
+
             modelBuilder.Entity("FitnessTicketApp.Models.Domain.Client", b =>
                 {
                     b.Property<Guid>("Id")
