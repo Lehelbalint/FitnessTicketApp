@@ -8,16 +8,16 @@ namespace FitnessTicketApp.Controllers
 {
     public class BerletTipusController : Controller
     {
-        private readonly MVCDbContext mvcDbContext;
-        public BerletTipusController(MVCDbContext mvcDbContext)
+        private readonly FitnessAppDbContext fitnesAppDbContext;
+        public BerletTipusController(FitnessAppDbContext fitnesAppDbContext)
         {
-            this.mvcDbContext = mvcDbContext;
+            this.fitnesAppDbContext = fitnesAppDbContext;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-          var berletTipusok = await mvcDbContext.BerletTipusok.ToListAsync();
+          var berletTipusok = await fitnesAppDbContext.BerletTipusok.ToListAsync();
            return View(berletTipusok);
         }
 
@@ -44,8 +44,8 @@ namespace FitnessTicketApp.Controllers
                 NapontaHanyszorHasznalhato = addBerletTipusRequest.NapontaHanyszorHasznalhato
 
             };
-            mvcDbContext.BerletTipusok.AddAsync(berletTipus);
-            await mvcDbContext.SaveChangesAsync();
+            fitnesAppDbContext.BerletTipusok.AddAsync(berletTipus);
+            await fitnesAppDbContext.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
@@ -53,7 +53,7 @@ namespace FitnessTicketApp.Controllers
         [HttpGet]
         public async Task<IActionResult> View(Guid id)
         {
-           var berletTipus = await mvcDbContext.BerletTipusok.FirstOrDefaultAsync(x => x.Id == id);
+           var berletTipus = await fitnesAppDbContext.BerletTipusok.FirstOrDefaultAsync(x => x.Id == id);
 
             if (berletTipus != null)
             {
@@ -82,7 +82,7 @@ namespace FitnessTicketApp.Controllers
         [HttpPost]
         public async Task<IActionResult> View(UpdateBerletTipusViewModel model)
         {
-            var berletTipus = await mvcDbContext.BerletTipusok.FindAsync(model.Id);
+            var berletTipus = await fitnesAppDbContext.BerletTipusok.FindAsync(model.Id);
 
             if (berletTipus != null)
             {
@@ -96,7 +96,7 @@ namespace FitnessTicketApp.Controllers
                 berletTipus.Hanyoraig = model.Hanyoraig;
                 berletTipus.NapontaHanyszorHasznalhato = model.NapontaHanyszorHasznalhato;
 
-                await mvcDbContext.SaveChangesAsync();
+                await fitnesAppDbContext.SaveChangesAsync();
 
                 return RedirectToAction("Index");
 
