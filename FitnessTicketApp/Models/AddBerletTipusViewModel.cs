@@ -12,7 +12,7 @@
 
         public bool Torolve { get; set; }
 
-        public int Terem_Id { get; set; }
+        public Guid Terem_Id { get; set; }
 
         public int Hanyoratol { get; set; }
 

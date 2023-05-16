@@ -50,8 +50,8 @@ namespace FitnessTicketApp.Migrations
                     b.Property<int>("NapontaHanyszorHasznalhato")
                         .HasColumnType("int");
 
-                    b.Property<int>("Terem_Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Terem_Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Torolve")
                         .HasColumnType("bit");
@@ -107,6 +107,63 @@ namespace FitnessTicketApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("FitnessTicketApp.Models.Domain.ClientTicket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CardId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CheckIns")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("FirstCheckInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("GymId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PurchaseId")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("TicketId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Valability")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClientsTickets");
+                });
+
+            modelBuilder.Entity("FitnessTicketApp.Models.Domain.Gym", b =>
+                {
+                    b.Property<Guid>("GymId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("GymName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("GymId");
+
+                    b.ToTable("Gyms");
                 });
 #pragma warning restore 612, 618
         }
