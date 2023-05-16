@@ -38,7 +38,7 @@ namespace FitnessTicketApp.Controllers
                 HanyNapigErvenyes = addBerletTipusRequest.HanyNapigErvenyes,
                 HanyBelepesreErvenyes = addBerletTipusRequest.HanyBelepesreErvenyes,
                 Torolve = addBerletTipusRequest.Torolve,
-                Terem_Id = addBerletTipusRequest.Terem_Id,
+                Terem_Id = Guid.NewGuid(),
                 Hanyoratol = addBerletTipusRequest.Hanyoratol,
                 Hanyoraig = addBerletTipusRequest.Hanyoraig,
                 NapontaHanyszorHasznalhato = addBerletTipusRequest.NapontaHanyszorHasznalhato

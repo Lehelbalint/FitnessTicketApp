@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FitnessTicketApp.Migrations
 {
     /// <inheritdoc />
-    public partial class Migracio1 : Migration
+    public partial class Vegso : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace FitnessTicketApp.Migrations
                     HanyNapigErvenyes = table.Column<int>(type: "int", nullable: false),
                     HanyBelepesreErvenyes = table.Column<int>(type: "int", nullable: false),
                     Torolve = table.Column<bool>(type: "bit", nullable: false),
-                    Terem_Id = table.Column<int>(type: "int", nullable: false),
+                    Terem_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Hanyoratol = table.Column<int>(type: "int", nullable: false),
                     Hanyoraig = table.Column<int>(type: "int", nullable: false),
                     NapontaHanyszorHasznalhato = table.Column<int>(type: "int", nullable: false)
@@ -51,6 +51,39 @@ namespace FitnessTicketApp.Migrations
                 {
                     table.PrimaryKey("PK_Clients", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ClientsTickets",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PurchaseId = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CardId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CheckIns = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Valability = table.Column<bool>(type: "bit", nullable: false),
+                    FirstCheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    GymId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientsTickets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Gyms",
+                columns: table => new
+                {
+                    GymId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GymName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gyms", x => x.GymId);
+                });
         }
 
         /// <inheritdoc />
@@ -61,6 +94,12 @@ namespace FitnessTicketApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clients");
+
+            migrationBuilder.DropTable(
+                name: "ClientsTickets");
+
+            migrationBuilder.DropTable(
+                name: "Gyms");
         }
     }
 }

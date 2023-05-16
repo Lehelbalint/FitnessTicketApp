@@ -11,5 +11,7 @@ namespace FitnessTicketApp.Data
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<BerletTipus> BerletTipusok { get; set; }
+        public DbSet<Gym> Gyms { get; set; }
+        public DbSet<ClientTicket> ClientsTickets { get; set; }
     }
 }
