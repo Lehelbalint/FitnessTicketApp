@@ -1,0 +1,11 @@
+﻿@model FitnessTicketApp.Models.GymViewModel
+@{
+}
+<h1>Add Client</h1>
+<form method="post" enctype="multipart/form-data" action="AddGym" class="mt-5">
+    <div class="mb-3">
+        <label for="name" class="form-label">Név:</label>
+        <input type="text" id="name" name="GymName" required asp-for="GymName" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
