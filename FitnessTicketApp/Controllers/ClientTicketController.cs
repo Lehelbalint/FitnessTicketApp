@@ -52,7 +52,8 @@ namespace FitnessTicketApp.Controllers
             };
             await fitnessAppDbContext.ClientsTickets.AddAsync(ClientMemberShip);
             await fitnessAppDbContext.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+			TempData["Succes"] = "Succesfully added";
+			return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -4,6 +4,12 @@
     ViewData["Title"] = "AddMemberShip";
 }
 
+@if (TempData["Succes"] != null)
+{
+    <div class="alert alert-succes">
+        <strong>Succes!</strong>@TempData["Succes"]
+    </div>
+}
 <h2>MyAction</h2>
 
 <form asp-action="SaveMapping" method="post">
