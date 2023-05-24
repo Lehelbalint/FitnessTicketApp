@@ -24,7 +24,12 @@ namespace FitnessTicketApp.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            var gyms = fitnesAppDbContext.Gyms.ToList();
+            var viewModel = new AddBerletTipusViewModel
+            {
+                Gyms = gyms
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -37,14 +42,14 @@ namespace FitnessTicketApp.Controllers
                 Ar = addBerletTipusRequest.Ar,
                 HanyNapigErvenyes = addBerletTipusRequest.HanyNapigErvenyes,
                 HanyBelepesreErvenyes = addBerletTipusRequest.HanyBelepesreErvenyes,
-                Torolve = false,
-                Terem_Id = Guid.NewGuid(),
+                Torolve = addBerletTipusRequest.Torolve,
+                Terem_Id = addBerletTipusRequest.SelectedGymId,
                 Hanyoratol = addBerletTipusRequest.Hanyoratol,
                 Hanyoraig = addBerletTipusRequest.Hanyoraig,
                 NapontaHanyszorHasznalhato = addBerletTipusRequest.NapontaHanyszorHasznalhato
 
             };
-            fitnesAppDbContext.BerletTipusok.AddAsync(berletTipus);
+            await fitnesAppDbContext.BerletTipusok.AddAsync(berletTipus);
             await fitnesAppDbContext.SaveChangesAsync();
 			TempData["Succes"] = "Succesfully added";
 			return RedirectToAction("Index");

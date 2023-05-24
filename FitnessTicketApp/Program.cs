@@ -1,5 +1,6 @@
 
 using FitnessTicketApp.Data;
+using FitnessTicketApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FitnessAppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("MvcDbConnectionString")));
+
+builder.Services.AddTransient<IEmailService, EmailService>();
 
 var app = builder.Build();
 
