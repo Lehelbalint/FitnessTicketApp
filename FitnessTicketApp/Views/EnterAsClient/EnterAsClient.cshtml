@@ -1,0 +1,20 @@
+﻿@model FitnessTicketApp.Models.EnterAsClientViewModel
+@{
+}
+
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>Failed!</strong>@TempData["AlertMessage"]
+    </div>
+}
+<h1>Enter your barcode</h1>
+<form method="get" action="ClientMemberships">
+    <div class="mb-3">
+        <label for="" class="form-label">Barcode</label>
+        <input type="text" id="barcode" name="Barcode" required asp-for="barcode" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>

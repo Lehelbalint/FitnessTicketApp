@@ -61,7 +61,8 @@ namespace FitnessTicketApp.Controllers
             }
             await fitnessAppDbContext.Clients.AddAsync(client);
             await fitnessAppDbContext.SaveChangesAsync();
-            return RedirectToAction("ClientList");
+			TempData["Succes"] = "Added succesfully";
+			return RedirectToAction("ClientList");
 
         }
 
@@ -108,7 +109,8 @@ namespace FitnessTicketApp.Controllers
 
                 fitnessAppDbContext.Clients.Update(client);
                 await fitnessAppDbContext.SaveChangesAsync();
-                return RedirectToAction("ClientList");
+				TempData["Succes"] = "Edited succesfully";
+				return RedirectToAction("ClientList");
             }
             return RedirectToAction("ClientList");
         }
@@ -122,7 +124,8 @@ namespace FitnessTicketApp.Controllers
                 client.Is_deleted = true;
                 fitnessAppDbContext.Clients.Update(client);
                 await fitnessAppDbContext.SaveChangesAsync();
-                return RedirectToAction("ClientList");
+				TempData["Succes"] = "Deleted succesfully";
+				return RedirectToAction("ClientList");
             }
 
             return RedirectToAction("ClientList");

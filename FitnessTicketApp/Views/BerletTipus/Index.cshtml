@@ -3,6 +3,18 @@
 }
 
 
+@if (TempData["AlertMessage"] != null)
+{
+	<div class="alert alert-warning">
+		<strong>Failed!</strong>@TempData["AlertMessage"]
+	</div>
+}
+@if (TempData["Succes"] != null)
+{
+	<div class="alert alert-succes">
+		<strong>Succes!</strong>@TempData["Succes"]
+	</div>
+}
 <h1>Berlet Tipusok</h1>
 <table class="table" id="table">
 	<thead>
@@ -34,7 +46,9 @@
 				<td>@berlet.Hanyoratol</td>
 				<td>@berlet.Hanyoraig</td>
 				<td>@berlet.NapontaHanyszorHasznalhato</td>
-				<td><a href="BerletTipus/View/@berlet.Id">View</a></td>
+				<td><a href="BerletTipus/View/@berlet.Id">View</a>
+					<a href="BerletTipus/Delete/@berlet.Id">Delete</a>
+				</td>
 			</tr>
 		}
 	</tbody>

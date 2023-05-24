@@ -1,0 +1,57 @@
+﻿@model List<FitnessTicketApp.Models.Domain.UserMemberships>
+@{
+}
+
+@if(TempData["AlertMessage"] != null)
+{
+	<div class="alert alert-warning">
+	<strong>Failed!</strong>@TempData["AlertMessage"]
+	</div>
+}
+@if (TempData["Succes"] != null)
+{
+	<div class="alert alert-succes">
+		<strong>Succes</strong>@TempData["AlertMessage"]
+	</div>
+}
+
+<h1>Your tickets</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Ticket Name</th>
+			<th>Purchase Date</th>
+			<th>Price</th>
+			<th>Check ins</th>
+			<th>Valability</th>
+			<th>First Check In</th>
+			<th>Gym name</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var ticket in Model)
+		{
+			<tr>
+				<td>@ticket.Id</td>
+				<td>@ticket.MembershipName</td>
+				<td>@ticket.PurchaseId.ToString()</td>
+				<td>@ticket.Price</td>
+				<td>@ticket.CheckIns</td>
+				<td>@ticket.Valability.ToString()</td>
+				<td>@ticket.FirstCheckInDate.ToString()</td>
+				<td>Gym</td>
+				<td>
+					<form method="post"   action="CheckIn">
+						<input type="hidden" name="ticketId" value="@ticket.Id" />
+						<button type="submit" class="btn btn-primary">Submit</button>
+				</form></td>
+			</tr>
+		}
+	</tbody>
+</table>
+<form method="get" action="MyCheckIns">
+	<input type="hidden" name="barcode" value="@Model[0].Barcode" />
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>

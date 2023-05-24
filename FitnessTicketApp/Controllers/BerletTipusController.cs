@@ -51,8 +51,8 @@ namespace FitnessTicketApp.Controllers
             };
             await fitnesAppDbContext.BerletTipusok.AddAsync(berletTipus);
             await fitnesAppDbContext.SaveChangesAsync();
-
-            return RedirectToAction("Index");
+			TempData["Succes"] = "Succesfully added";
+			return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -102,14 +102,35 @@ namespace FitnessTicketApp.Controllers
                 berletTipus.NapontaHanyszorHasznalhato = model.NapontaHanyszorHasznalhato;
 
                 await fitnesAppDbContext.SaveChangesAsync();
-
-                return RedirectToAction("Index");
+				TempData["Succes"] = "Succesfully edited";
+				return RedirectToAction("Index");
 
             }
-            return RedirectToAction("Index");
+			
+			return RedirectToAction("Index");
         }
+		[HttpGet]
+		public async Task<IActionResult> Delete(Guid id)
+		{
+			var berletTipus = await fitnesAppDbContext.BerletTipusok.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(berletTipus.Torolve == true)
+            {
+				TempData["AlertMessage"] = "Already deleted";
+			}
+			if (berletTipus != null)
+			{
+				berletTipus.Torolve = true;
+				fitnesAppDbContext.BerletTipusok.Update(berletTipus);
+				await fitnesAppDbContext.SaveChangesAsync();
+                TempData["Succes"] = "Succesfully deleted";
+				return RedirectToAction("Index");
+			}
+
+			return RedirectToAction("Index");
+		}
 
 
 
-    }
+	}
 }
